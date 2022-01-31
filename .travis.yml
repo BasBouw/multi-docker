@@ -9,11 +9,11 @@ script:
   - docker run -e CI=true fanlima/react-test npm test
 
 after_sucess:
-  docker build -t fanlima/multi-client ./client
-  docker build -t fanlima/multi-nginx ./nginx
-  docker build -t fanlima/multi-server ./server
-  docker build -t fanlima/multi-worker ./worker
-- echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  - docker build -t fanlima/multi-client ./client
+  - docker build -t fanlima/multi-nginx ./nginx
+  - docker build -t fanlima/multi-server ./server
+  - docker build -t fanlima/multi-worker ./worker
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   # Take those images and push them to docker hub
   - docker push fanlima/multi-client
   - docker push fanlima/multi-nginx
